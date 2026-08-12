@@ -1,0 +1,1210 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Founder’s Playbook EVAr — Curso Completo</title>
+<style>
+:root {
+  --bg:#ebe6dc; --paper:#f8f5ed; --navy:#1d2f3f; --gold:#b08435;
+  --teal:#2f756f; --blue:#456889; --red:#a44843; --muted:#697176;
+  --line:#d5ccbc; --shadow:0 18px 50px rgba(29,47,63,.10);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--navy);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+body{overflow:hidden}
+.app{height:100vh;display:grid;grid-template-columns:280px 1fr}
+aside{background:#e4ded2;border-right:1px solid var(--line);padding:22px 18px;overflow:auto}
+.brand{font-weight:800;letter-spacing:.08em;font-size:13px;color:var(--gold);margin-bottom:8px}
+.course-title{font-size:22px;font-weight:800;line-height:1.05;margin-bottom:20px}
+.map{display:flex;flex-direction:column;gap:8px}
+.map-node{border:1px solid var(--line);background:rgba(248,245,237,.75);border-radius:14px;padding:11px 12px;text-align:left;cursor:pointer;color:var(--navy);transition:.2s}
+.map-node:hover,.map-node.active{transform:translateX(3px);border-color:var(--gold);box-shadow:0 8px 20px rgba(29,47,63,.08)}
+.map-node span{display:block;font-size:12px;font-weight:800;color:var(--gold)}
+.map-node small{display:block;margin-top:3px;font-size:12px;line-height:1.25;color:var(--muted)}
+main{position:relative;overflow:hidden}
+.deck{height:100%;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+.slide{min-height:100vh;padding:48px 6vw 56px;display:flex;flex-direction:column;justify-content:center;scroll-snap-align:start;position:relative}
+.slide::before{content:"";position:absolute;inset:0;pointer-events:none;background:
+ radial-gradient(circle at 85% 18%, rgba(176,132,53,.10), transparent 24%),
+ radial-gradient(circle at 12% 85%, rgba(47,117,111,.07), transparent 26%)}
+.slide>*{position:relative}
+.slide-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.section-kicker{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.slide-number{font-size:12px;font-weight:800;color:var(--muted)}
+h2{font-size:clamp(30px,4vw,52px);line-height:1.02;letter-spacing:-.035em;margin:0 0 18px;max-width:1050px}
+.badge{display:inline-block;background:var(--navy);color:var(--paper);padding:7px 11px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;max-width:1120px}
+.card{min-height:110px;background:rgba(248,245,237,.92);border:1px solid var(--line);border-radius:20px;padding:20px 22px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 10px 30px rgba(29,47,63,.055)}
+.card-index{font-size:11px;font-weight:900;color:var(--gold);padding-top:2px;min-width:22px}
+.card-text{font-size:clamp(16px,1.35vw,20px);line-height:1.38;color:var(--navy)}
+.card.gold{border-top:4px solid var(--gold)}
+.card.teal{border-top:4px solid var(--teal)}
+.card.blue{border-top:4px solid var(--blue)}
+.card.navy{border-top:4px solid var(--navy)}
+.card.wide{grid-column:1/-1}
+.overview h2{font-size:clamp(38px,5vw,68px)}
+.overview .cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+.overview .card{min-height:145px}
+.slide-progress{position:absolute;left:6vw;right:6vw;bottom:26px;height:3px;background:rgba(29,47,63,.10);border-radius:10px;overflow:hidden}
+.slide-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--teal));transition:width .2s}
+.controls{position:fixed;right:28px;bottom:24px;display:flex;gap:8px;z-index:20}
+.controls button{border:1px solid var(--line);background:rgba(248,245,237,.92);backdrop-filter:blur(10px);width:42px;height:42px;border-radius:12px;cursor:pointer;font-weight:800;color:var(--navy);box-shadow:var(--shadow)}
+.help{position:fixed;right:28px;top:24px;z-index:20;background:var(--navy);color:var(--paper);padding:9px 12px;border-radius:999px;font-size:11px;opacity:.92}
+@media(max-width:900px){
+ body{overflow:auto}
+ .app{display:block;height:auto}
+ aside{position:fixed;z-index:30;left:0;right:0;bottom:0;padding:10px 12px;border-right:0;border-top:1px solid var(--line);max-height:110px;overflow:auto}
+ .course-title{display:none}
+ .map{flex-direction:row;overflow-x:auto}
+ .map-node{min-width:170px}
+ main{height:calc(100vh - 110px);margin-bottom:110px}
+ .cards,.overview .cards{grid-template-columns:1fr}
+ .slide{padding:34px 22px 55px}
+ .slide-progress{left:22px;right:22px}
+ .controls{right:14px;bottom:125px}
+ .help{right:14px;top:12px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside>
+  <div class="brand">EVAr · ACADEMY</div>
+  <div class="course-title">Founder’s Playbook<br>EVAr</div>
+  <div class="map"><button class="map-node" data-target="6"><span>01</span><small>A nova startup AI-native</small></button><button class="map-node" data-target="13"><span>02</span><small>IDEA</small></button><button class="map-node" data-target="21"><span>03</span><small>MVP</small></button><button class="map-node" data-target="32"><span>04</span><small>LAUNCH</small></button><button class="map-node" data-target="45"><span>05</span><small>SCALE</small></button><button class="map-node" data-target="59"><span>06</span><small>EVAr AI-Native Operating System</small></button><button class="map-node" data-target="73"><span>07</span><small>Execução prática</small></button><button class="map-node" data-target="81"><span>08</span><small>Aplicação EVAr</small></button></div>
+</aside>
+<main>
+  <div class="help">↑ ↓ / espaço · navegação</div>
+  <div class="deck" id="deck">
+    
+    <section class="slide overview" id="slide-1" data-section="Visão geral" data-n="1">
+      <div class="slide-top">
+        <div class="section-kicker">Abertura · Visão geral</div>
+        <div class="slide-number">01</div>
+      </div>
+      <h2>FOUNDER’S PLAYBOOK EVAr</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Construindo uma empresa AI-native</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Curso completo inspirado no The Founder’s Playbook da Anthropic, com tradução conceitual, explicação dos termos, monetização e execução aplicada à EVAr.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Curso completo • versão executiva e aplicada</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">EVAr</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-2" data-section="Visão geral" data-n="2">
+      <div class="slide-top">
+        <div class="section-kicker">Abertura · Visão geral</div>
+        <div class="slide-number">02</div>
+      </div>
+      <h2>ABERTURA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Como usar este curso</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Não é uma tradução do material original. É uma adaptação educacional e estratégica.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Cada conceito segue: conceito → linguagem simples → EVAr → monetização → decisão → exercício → execução.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Termos técnicos são explicados quando aparecem.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">O objetivo final não é conhecimento acumulado; é mudança de comportamento e decisões melhores.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">REGRA</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Se um slide gerar uma decisão real da EVAr, o curso cumpriu sua função.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-3" data-section="Visão geral" data-n="3">
+      <div class="slide-top">
+        <div class="section-kicker">Abertura · Visão geral</div>
+        <div class="slide-number">03</div>
+      </div>
+      <h2>FONTE</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">O que é o Founder’s Playbook</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Publicação da Anthropic, 14 de maio de 2026.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">36 páginas, estruturadas em sete capítulos na edição do material.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Reorganiza a jornada startup em Idea, MVP, Launch e Scale.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Inclui objetivos, critérios de saída, falhas comuns, exercícios e uma matriz de ferramentas.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">A tese central: o fundador migra de executor individual para orquestrador.</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">NOSSA LEITURA CRÍTICA</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">O material é valioso, mas também promove o ecossistema Claude. Vamos separar princípios duráveis de recomendações específicas de fornecedor.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-4" data-section="Visão geral" data-n="4">
+      <div class="slide-top">
+        <div class="section-kicker">Abertura · Visão geral</div>
+        <div class="slide-number">04</div>
+      </div>
+      <h2>VISÃO</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">A tese central</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">A IA não apenas acelera tarefas.
+Ela muda a estrutura econômica e operacional de uma startup.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">ANTES</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Capital → equipe → tecnologia → construção → crescimento</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">AGORA</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Conhecimento → IA → agentes → execução → validação contínua</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">NOVO GARGALO</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">O que escolher, como distribuir e como coordenar.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-5" data-section="Visão geral" data-n="5">
+      <div class="slide-top">
+        <div class="section-kicker">Abertura · Visão geral</div>
+        <div class="slide-number">05</div>
+      </div>
+      <h2>LINGUAGEM</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Vocabulário essencial</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">AI-NATIVE</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Empresa desenhada para usar IA como infraestrutura operacional.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">MVP</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Minimum Viable Product: menor produto funcional para testar valor real.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">PMF</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Product-Market Fit: evidência de valor forte e recorrente.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">AGENTE</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">IA que recebe um objetivo e executa etapas com ferramentas. ORQUESTRAÇÃO Coordenação de agentes, modelos, dados e ferramentas. WORKFLOW Sequência estruturada de tarefas que produz um resultado. RAG IA consulta uma base de conhecimento antes de responder. API Ponte padronizada entre sistemas.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide overview" id="slide-6" data-section="A nova startup AI-native" data-n="6">
+      <div class="slide-top">
+        <div class="section-kicker">01 · A nova startup AI-native</div>
+        <div class="slide-number">06</div>
+      </div>
+      <h2>01 • FUNDAMENTOS</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">MÓDULO 1 — A nova startup AI-native</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Quatro capacidades mudam o desenho da empresa:</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">INTELIGÊNCIA</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Pesquisa e raciocínio sob demanda</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">CODIFICAÇÃO</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Construção e evolução por linguagem</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">AUTOMAÇÃO</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Execução operacional sem atenção constante</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">MEMÓRIA Contexto acumulado e reutilizável</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-7" data-section="A nova startup AI-native" data-n="7">
+      <div class="slide-top">
+        <div class="section-kicker">01 · A nova startup AI-native</div>
+        <div class="slide-number">07</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">O fundador como orquestrador</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Você deixa de ser a pessoa que executa cada tarefa e passa a ser quem define objetivos, contexto, critérios e prioridades.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">A IA só aumenta capacidade quando alguém sabe o que delegar e como verificar.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Você concentra tempo em visão, produto, distribuição, relacionamento e decisões críticas.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Construir um mapa de delegação para a EVAr. MONETIZAÇÃO Mais capacidade por fundador pode significar mais produtos e maior margem sem crescimento proporcional de equipe. EXERCÍCIO Liste 20 atividades e marque: humano, IA, agente ou híbrido. TERMO: Orquestrador = quem coordena recursos diferentes para produzir um resultado.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-8" data-section="A nova startup AI-native" data-n="8">
+      <div class="slide-top">
+        <div class="section-kicker">01 · A nova startup AI-native</div>
+        <div class="slide-number">08</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Conversational intelligence</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">IA como especialista sob demanda: pesquisa, análise, modelagem, escrita, crítica e preparação.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Reduz o custo de acessar conhecimento especializado.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Use IA para preparar decisões, não para terceirizar julgamento.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Todo projeto estratégico começa com uma etapa explícita de pesquisa e contraditório. MONETIZAÇÃO Menor custo de análise permite testar mais oportunidades antes de investir. EXERCÍCIO Pegue uma decisão da EVAr e peça três análises: favorável, contrária e independente. TERMO: Conversational intelligence = inteligência acessada por conversa.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-9" data-section="A nova startup AI-native" data-n="9">
+      <div class="slide-top">
+        <div class="section-kicker">01 · A nova startup AI-native</div>
+        <div class="slide-number">09</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Agentic coding</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Você descreve o comportamento desejado; um agente de programação implementa, testa, depura e refatora.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Reduz a dependência da capacidade humana de escrever cada linha.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Fábrica EVAr deve usar IA para construção, mas manter arquitetura, QA e documentação sob controle.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">IA escreve código; a Fábrica define padrões e verifica qualidade. MONETIZAÇÃO Velocidade reduz custo de experimentação; não justifica código descartável. EXERCÍCIO Peça à IA para construir um pequeno fluxo e depois faça uma revisão estruturada. TERMO: Agentic coding = programação executada por agentes orientados a objetivos.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-10" data-section="A nova startup AI-native" data-n="10">
+      <div class="slide-top">
+        <div class="section-kicker">01 · A nova startup AI-native</div>
+        <div class="slide-number">10</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Workflow automation</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Um processo recorrente é transformado em uma sequência que a IA e ferramentas conseguem executar.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Administração repetitiva consome atenção do fundador.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Relatórios, pesquisa, organização, follow-ups e documentação podem ser candidatos.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Automatizar apenas depois de entender o processo. MONETIZAÇÃO Automação reduz custo operacional e libera capacidade para atividades de maior valor. EXERCÍCIO Escolha um processo semanal e desenhe entrada → processamento → aprovação → saída. TERMO: Workflow = fluxo estruturado de trabalho.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-11" data-section="A nova startup AI-native" data-n="11">
+      <div class="slide-top">
+        <div class="section-kicker">01 · A nova startup AI-native</div>
+        <div class="slide-number">11</div>
+      </div>
+      <h2>01 • FUNDAMENTOS</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">O que NÃO muda</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">O cliente continua precisando de valor real.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Distribuição continua sendo difícil.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Confiança e reputação continuam importando.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Produto ruim continua sendo produto ruim, mesmo criado em minutos.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Capital, foco e julgamento continuam escassos.</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">ALERTA</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">AI-native não significa “AI-only”. A empresa ainda precisa dominar negócio.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-12" data-section="A nova startup AI-native" data-n="12">
+      <div class="slide-top">
+        <div class="section-kicker">01 · A nova startup AI-native</div>
+        <div class="slide-number">12</div>
+      </div>
+      <h2>01 • ECONOMIA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Monetização do modelo AI-native</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Menor custo de construção → mais experimentos.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Menor custo operacional → maior margem.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Mais velocidade → mais oportunidades testadas.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Mais automação → mais receita suportada pela mesma estrutura.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Mais memória → menos retrabalho.</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">MÉTRICA</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">A pergunta é: quanto valor adicional a IA gera por real gasto em IA?</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide overview" id="slide-13" data-section="IDEA" data-n="13">
+      <div class="slide-top">
+        <div class="section-kicker">02 · IDEA</div>
+        <div class="slide-number">13</div>
+      </div>
+      <h2>01 • WORKSHOP</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Exercício do módulo 1</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Crie o primeiro rascunho do EVAr Operating System.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">VOCÊ</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Direção</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">MEMÓRIA</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Contexto</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">IA</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Inteligência</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">AGENTES Execução PRODUTOS Valor Resultado: uma lista concreta de trabalhos que nunca mais deveriam depender exclusivamente da sua memória.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-14" data-section="IDEA" data-n="14">
+      <div class="slide-top">
+        <div class="section-kicker">02 · IDEA</div>
+        <div class="slide-number">14</div>
+      </div>
+      <h2>02 • IDEA</h2>
+      <div class="badge">MÓDULO 2 — IDEA</div>
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Objetivo: obter evidência suficiente para justificar a construção.</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">ENTRADA</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Problema ou hipótese</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">PROCESSO</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Pesquisa + discovery + contraditório</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">SAÍDA</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Problema-solução com evidência</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-15" data-section="IDEA" data-n="15">
+      <div class="slide-top">
+        <div class="section-kicker">02 · IDEA</div>
+        <div class="slide-number">15</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Hipótese do problema</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Uma afirmação específica que pode ser testada e também pode ser provada errada.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Sem hipótese, pesquisa vira coleção de informações.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">FARO: “autônomos deixam dinheiro na mesa por não saber priorizar oportunidades”.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Separar hipótese de fato. MONETIZAÇÃO Problemas caros e frequentes tendem a sustentar melhor monetização recorrente. EXERCÍCIO Escreva três hipóteses e, para cada uma, diga o que provaria que está errada. TERMO: Hipótese = explicação provisória que precisa de evidência.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-16" data-section="IDEA" data-n="16">
+      <div class="slide-top">
+        <div class="section-kicker">02 · IDEA</div>
+        <div class="slide-number">16</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Pesquisa orientada a evidências</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Pesquisar não é acumular links; é buscar evidências que confirmem ou enfraqueçam uma decisão.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">IA pode acelerar muito a coleta e síntese.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Memória EVAr deve guardar fonte, data, conclusão e nível de confiança.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Não salvar apenas “resumo”; salvar também origem e interpretação. MONETIZAÇÃO Pesquisa barata aumenta velocidade de validação, mas não substitui contato com cliente. EXERCÍCIO Escolha uma afirmação sobre FARO e peça pesquisa pró e contra. TERMO: Evidência = informação que aumenta ou reduz confiança numa hipótese.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-17" data-section="IDEA" data-n="17">
+      <div class="slide-top">
+        <div class="section-kicker">02 · IDEA</div>
+        <div class="slide-number">17</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Customer discovery</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Descobrir como pessoas reais vivem o problema, observando comportamentos e episódios concretos.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Opiniões sobre um produto futuro são fracas; comportamentos passados são mais informativos.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Perguntar: “quando foi a última vez que isso aconteceu?”</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">FARO deve investigar o comportamento atual antes de adicionar funcionalidades. MONETIZAÇÃO Discovery pode revelar um problema mais valioso que o inicialmente imaginado. EXERCÍCIO Monte 10 perguntas focadas em episódios reais. TERMO: Customer discovery = descoberta do cliente/problema.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-18" data-section="IDEA" data-n="18">
+      <div class="slide-top">
+        <div class="section-kicker">02 · IDEA</div>
+        <div class="slide-number">18</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Mapa competitivo</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Visão do que o cliente usa hoje: concorrentes, substitutos e improvisos.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">O maior concorrente pode ser WhatsApp, planilha, papel ou não fazer nada.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">FARO compete pelo comportamento de acompanhamento comercial, não apenas contra CRMs.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Mapear alternativas antes de decidir diferenciais. MONETIZAÇÃO Preço deve ser comparado ao custo da alternativa e ao valor criado. EXERCÍCIO Faça uma matriz: solução atual, preço, esforço, benefício e limitação. TERMO: Substituto = outra forma de resolver o mesmo problema.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-19" data-section="IDEA" data-n="19">
+      <div class="slide-top">
+        <div class="section-kicker">02 · IDEA</div>
+        <div class="slide-number">19</div>
+      </div>
+      <h2>02 • IDEA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">O advogado do diabo</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">A IA deve tentar destruir nossa tese.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Qual premissa é mais frágil?
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">O que um concorrente faria para vencer?
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Por que o cliente não pagaria?
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Que evidência contradiz nossa hipótese?
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Qual funcionalidade parece boa, mas pode ser inútil?</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">EVAr</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Se a hipótese sobreviver a uma crítica forte, ela merece um teste melhor — não uma celebração.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-20" data-section="IDEA" data-n="20">
+      <div class="slide-top">
+        <div class="section-kicker">02 · IDEA</div>
+        <div class="slide-number">20</div>
+      </div>
+      <h2>02 • DECISÃO</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Critério de saída da IDEA</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">PROBLEMA</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Real, específico e mensurável</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">CLIENTE</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Identificável e acessível</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">ALTERNATIVAS</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Conhecidas</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">SOLUÇÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Responde à dor observada Não significa certeza. Significa evidência suficiente para justificar um experimento.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide overview" id="slide-21" data-section="MVP" data-n="21">
+      <div class="slide-top">
+        <div class="section-kicker">03 · MVP</div>
+        <div class="slide-number">21</div>
+      </div>
+      <h2>02 • ECONOMIA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Monetização na IDEA</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Quem paga?
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Por que paga?
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Quando paga?
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">O valor é recorrente ou pontual?
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">O preço pode ser relacionado ao valor gerado?
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Qual custo teremos para entregar o valor?</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">FARO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Hipótese inicial: assinatura acessível ancorada no valor de oportunidades recuperadas/fechadas.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-22" data-section="MVP" data-n="22">
+      <div class="slide-top">
+        <div class="section-kicker">03 · MVP</div>
+        <div class="slide-number">22</div>
+      </div>
+      <h2>02 • WORKSHOP</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Workshop IDEA — FARO</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Entregável: uma página de Problem-Solution Evidence.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">DOR</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Evidência</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">CLIENTE</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Perfil</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">ALTERNATIVA</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Como resolve hoje</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">VALOR Quanto vale Se faltar evidência em qualquer quadrante, a próxima tarefa é pesquisa/discovery — não desenvolvimento.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-23" data-section="MVP" data-n="23">
+      <div class="slide-top">
+        <div class="section-kicker">03 · MVP</div>
+        <div class="slide-number">23</div>
+      </div>
+      <h2>03 • MVP</h2>
+      <div class="badge">MÓDULO 3 — MVP</div>
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Objetivo: transformar problema validado em produto usado no mundo real.</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">FOCO</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Uma hipótese central</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">PRODUTO</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Fluxo mínimo funcional</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">EVIDÊNCIA</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Retenção, pagamento ou indicação</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-24" data-section="MVP" data-n="24">
+      <div class="slide-top">
+        <div class="section-kicker">03 · MVP</div>
+        <div class="slide-number">24</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">MVP — o que significa de verdade</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Não é “produto incompleto”; é produto deliberadamente limitado para responder uma pergunta importante.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Escopo menor acelera aprendizado e reduz desperdício.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">FARO começa por dinheiro visível hoje, oportunidades e missão do dia.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Funcionalidade só entra se ajudar a testar a hipótese central. MONETIZAÇÃO MVP pode ser pago; preço também é experimento. EXERCÍCIO Faça duas listas: “necessário para aprender” e “bom ter”. TERMO: MVP = Minimum Viable Product.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-25" data-section="MVP" data-n="25">
+      <div class="slide-top">
+        <div class="section-kicker">03 · MVP</div>
+        <div class="slide-number">25</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Escopo e critérios de saída</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Definir antecipadamente o que precisa funcionar e o que não será construído.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Sem critério de saída, o MVP cresce indefinidamente.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Fábrica deve registrar escopo, não-escopo, métricas e riscos.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Todo MVP precisa de Definition of Done. MONETIZAÇÃO Reduzir escopo reduz custo de aquisição de evidência. EXERCÍCIO Escreva o Definition of Done do FARO MVP em 10 itens. TERMO: Definition of Done = condição objetiva para considerar algo concluído.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-26" data-section="MVP" data-n="26">
+      <div class="slide-top">
+        <div class="section-kicker">03 · MVP</div>
+        <div class="slide-number">26</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Dívida técnica agentiva</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Atalhos criados por agentes de programação que acumulam custo futuro.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">IA pode gerar muito código rapidamente; sem contexto persistente, cada sessão pode tomar decisões diferentes.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Arquitetura, padrões e decisões precisam estar documentados e disponíveis aos agentes.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Velocidade nunca elimina revisão. MONETIZAÇÃO Dívida técnica aumenta custo futuro; não aparece necessariamente no primeiro mês. EXERCÍCIO Peça a uma IA para auditar um fluxo e listar possíveis dívidas. TERMO: Dívida técnica = custo futuro criado por escolhas técnicas de hoje.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-27" data-section="MVP" data-n="27">
+      <div class="slide-top">
+        <div class="section-kicker">03 · MVP</div>
+        <div class="slide-number">27</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Arquitetura antes do volume</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Definir fronteiras do sistema antes de pedir para a IA construir dezenas de funcionalidades.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Arquitetura reduz retrabalho.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Fábrica: interface, lógica, dados, integrações e agentes com responsabilidades claras.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Não construir monólito sem intenção. MONETIZAÇÃO Arquitetura modular reduz custo de evolução e troca de fornecedores. EXERCÍCIO Desenhe o FARO em cinco blocos e defina o papel de cada um. TERMO: Arquitetura = desenho das partes do sistema e como elas se relacionam.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-28" data-section="MVP" data-n="28">
+      <div class="slide-top">
+        <div class="section-kicker">03 · MVP</div>
+        <div class="slide-number">28</div>
+      </div>
+      <h2>03 • LINGUAGEM</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Termos técnicos — segurança</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">AUTENTICAÇÃO</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Quem é você?</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">AUTORIZAÇÃO</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">O que você pode fazer?</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">SEGREDO</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Chave/senha que não pode ser exposta.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">LOG</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Registro do que aconteceu. BACKUP Cópia para recuperação. ENCRYPTION Proteção dos dados por criptografia.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-29" data-section="MVP" data-n="29">
+      <div class="slide-top">
+        <div class="section-kicker">03 · MVP</div>
+        <div class="slide-number">29</div>
+      </div>
+      <h2>03 • QA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">IA escreve código. A Fábrica responde pela qualidade.</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Especificação antes de implementação.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Testes antes de aceitar.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Revisão de segurança.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Revisão de dados e permissões.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Documentação das decisões.
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Validação do comportamento real.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">QA</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Quality Assurance = garantir que o produto funciona como deveria e não apenas que “parece funcionar”.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-30" data-section="MVP" data-n="30">
+      <div class="slide-top">
+        <div class="section-kicker">03 · MVP</div>
+        <div class="slide-number">30</div>
+      </div>
+      <h2>03 • ECONOMIA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Monetização no MVP</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Preço pode ser parte do teste.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Cobrar cedo revela percepção de valor.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Freemium é uma escolha de aquisição, não uma regra.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Evitar plano gratuito que consome muito custo de IA sem conversão.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Monitorar margem por cliente desde cedo.</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">FARO</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Hipótese: premium-acessível, simples, com preço que não crie fricção para autônomos.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-31" data-section="MVP" data-n="31">
+      <div class="slide-top">
+        <div class="section-kicker">03 · MVP</div>
+        <div class="slide-number">31</div>
+      </div>
+      <h2>03 • WORKSHOP</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Workshop MVP — FARO</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">A pergunta: qual é o menor sistema que prova que FARO merece existir?</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">HIPÓTESE</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">O usuário precisa saber onde está o dinheiro e o que fazer hoje.</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">FLUXO</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Onboarding → oportunidades → prioridade → missão → ação.</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">MÉTRICA</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Retorno, ação executada, avanço de oportunidade, pagamento.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide overview" id="slide-32" data-section="LAUNCH" data-n="32">
+      <div class="slide-top">
+        <div class="section-kicker">04 · LAUNCH</div>
+        <div class="slide-number">32</div>
+      </div>
+      <h2>04 • LAUNCH</h2>
+      <div class="badge">MÓDULO 4 — LAUNCH</div>
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Se MVP prova que o produto merece existir, Launch prova que o negócio merece crescer.</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">AQUISIÇÃO</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Encontrar pessoas certas</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">ATIVAÇÃO</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Entregar primeiro valor</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">RETENÇÃO</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Criar hábito</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-33" data-section="LAUNCH" data-n="33">
+      <div class="slide-top">
+        <div class="section-kicker">04 · LAUNCH</div>
+        <div class="slide-number">33</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Product-Market Fit (PMF)</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">É quando um grupo identificável demonstra valor suficiente para continuar, pagar ou recomendar.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Evita confundir curiosidade inicial com negócio sustentável.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">FARO precisa virar hábito: “Bom dia” → dinheiro visível → ação.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Definir sinais de PMF antes do lançamento. MONETIZAÇÃO PMF aumenta capacidade de monetização e reduz risco de investir em crescimento prematuro. EXERCÍCIO Escolha 5 métricas que mostrariam que FARO está começando a encaixar. TERMO: PMF = Product-Market Fit.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-34" data-section="LAUNCH" data-n="34">
+      <div class="slide-top">
+        <div class="section-kicker">04 · LAUNCH</div>
+        <div class="slide-number">34</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Métricas de produto</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Medidas que mostram se o usuário chega ao valor, retorna e obtém resultado.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Sem métricas, crescimento vira opinião.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">FARO: ativação, retenção, ações executadas, oportunidades avançadas, receita recuperada.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Medir comportamento central, não apenas downloads. MONETIZAÇÃO Cada etapa do funil revela onde o dinheiro está sendo perdido. EXERCÍCIO Desenhe um funil FARO do download ao pagamento. TERMO: Funil = sequência de etapas que o usuário percorre até o resultado.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-35" data-section="LAUNCH" data-n="35">
+      <div class="slide-top">
+        <div class="section-kicker">04 · LAUNCH</div>
+        <div class="slide-number">35</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Churn e retenção</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Churn é a perda de clientes; retenção é a capacidade de mantê-los ativos.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Produto de assinatura vive ou morre por retenção.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">FARO precisa gerar valor antes que o usuário esqueça por que instalou.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Investir em hábito e resultado antes de aumentar funcionalidades. MONETIZAÇÃO Reduzir churn costuma aumentar LTV sem exigir nova aquisição. EXERCÍCIO Imagine 10 motivos pelos quais alguém cancelaria FARO. TERMO: Churn = percentual de clientes que saem.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-36" data-section="LAUNCH" data-n="36">
+      <div class="slide-top">
+        <div class="section-kicker">04 · LAUNCH</div>
+        <div class="slide-number">36</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">GTM — Go-To-Market</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Como produto, mensagem, canal, oferta e vendas trabalham juntos para chegar ao cliente.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Produto excelente sem distribuição pode morrer invisível.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">EVAr precisa construir distribuição desde o começo.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Tratar canal como parte do produto. MONETIZAÇÃO Canal eficiente reduz CAC e melhora unit economics. EXERCÍCIO Escolha três canais para FARO e defina hipótese, custo e métrica. TERMO: GTM = estratégia de entrada no mercado.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-37" data-section="LAUNCH" data-n="37">
+      <div class="slide-top">
+        <div class="section-kicker">04 · LAUNCH</div>
+        <div class="slide-number">37</div>
+      </div>
+      <h2>04 • POSICIONAMENTO</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">O cliente não compra funcionalidades</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Ele compra um resultado.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">FRACO</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">“CRM com IA para autônomos.”</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">MELHOR</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">“Organize suas oportunidades.”</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">FORTE</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">“Descubra onde está o dinheiro e o que fazer hoje.”</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-38" data-section="LAUNCH" data-n="38">
+      <div class="slide-top">
+        <div class="section-kicker">04 · LAUNCH</div>
+        <div class="slide-number">38</div>
+      </div>
+      <h2>04 • ECONOMIA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Monetização no Launch</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Preço precisa conversar com valor percebido.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Teste diferentes embalagens, não apenas números.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Observe conversão por canal.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Observe CAC por canal.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Compare CAC com LTV.
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Não escale um canal só porque traz muitos cadastros.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">CAC</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Customer Acquisition Cost = quanto custa, em média, adquirir um cliente.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-39" data-section="LAUNCH" data-n="39">
+      <div class="slide-top">
+        <div class="section-kicker">04 · LAUNCH</div>
+        <div class="slide-number">39</div>
+      </div>
+      <h2>04 • ECONOMIA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Unit economics — a matemática que sustenta o negócio</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">CAC</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Custo de adquirir um cliente.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">LTV</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Valor econômico esperado durante a relação.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">MARGEM</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Receita menos custos associados à entrega.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Regra simples: crescimento só é saudável se cada cliente adicional tende a criar valor econômico.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-40" data-section="LAUNCH" data-n="40">
+      <div class="slide-top">
+        <div class="section-kicker">04 · LAUNCH</div>
+        <div class="slide-number">40</div>
+      </div>
+      <h2>04 • OPERAÇÃO</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">O sistema operacional de Launch</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Entrada de leads.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Qualificação.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Follow-up.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Relatórios.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Feedback de clientes.
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Atualização de documentação.
+</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Monitoramento de métricas.</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">AGENTES O que for repetitivo, estruturado e verificável pode migrar para workflows agentivos.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-41" data-section="LAUNCH" data-n="41">
+      <div class="slide-top">
+        <div class="section-kicker">04 · LAUNCH</div>
+        <div class="slide-number">41</div>
+      </div>
+      <h2>04 • AGENTES</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Workflow agentivo — em linguagem simples</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Objetivo → plano → ferramentas → execução → verificação → resultado.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">OBJETIVO</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">O que precisa acontecer?</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">CONTEXTO</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">O que o agente precisa saber?</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">FERRAMENTAS</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">O que ele pode usar?</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">QA Como saber se fez certo?</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-42" data-section="LAUNCH" data-n="42">
+      <div class="slide-top">
+        <div class="section-kicker">04 · LAUNCH</div>
+        <div class="slide-number">42</div>
+      </div>
+      <h2>04 • EXPERIMENTO</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Kimi Work e Agent Swarm</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Kimi Work é interessante como laboratório de execução multiagente.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Agent Swarm coordena vários agentes/subtarefas.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Isso é útil para pesquisas e trabalhos com muitas etapas.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Não deve ser a Memória EVAr nem o núcleo da arquitetura.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">A EVAr precisa manter independência de fornecedor.</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">DECISÃO</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Testar Kimi Work, mas manter modelos e agentes plugáveis.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-43" data-section="LAUNCH" data-n="43">
+      <div class="slide-top">
+        <div class="section-kicker">04 · LAUNCH</div>
+        <div class="slide-number">43</div>
+      </div>
+      <h2>04 • AGENTES</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Exercício — transforme pedido em objetivo</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">PEDIDO FRACO</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">“Pesquise concorrentes.”</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">OBJETIVO FORTE</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">“Mapeie concorrentes, compare proposta, preço, público, canais e riscos e entregue oportunidades priorizadas.”</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">CRITÉRIO</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Fontes + síntese + lacunas + recomendação + próximos passos.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-44" data-section="LAUNCH" data-n="44">
+      <div class="slide-top">
+        <div class="section-kicker">04 · LAUNCH</div>
+        <div class="slide-number">44</div>
+      </div>
+      <h2>05 • SCALE</h2>
+      <div class="badge">MÓDULO 5 — SCALE</div>
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Escala = crescer sem aumentar proporcionalmente o trabalho humano.</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">PADRONIZAR</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">O que funciona vira processo.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">AUTOMATIZAR</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">O que é repetitivo vira workflow.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">DELEGAR</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">O que exige julgamento vai para humanos/agentes adequados.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide overview" id="slide-45" data-section="SCALE" data-n="45">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">45</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Bottleneck — o gargalo muda</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Quando construir fica barato, o gargalo passa para escolha, distribuição, qualidade e coordenação.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Mais capacidade de construção pode aumentar desperdício se não houver foco.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Fábrica deve proteger foco e evidência.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Medir onde a EVAr perde mais tempo hoje. MONETIZAÇÃO Remover gargalo de alto custo tende a aumentar retorno sobre a estrutura. EXERCÍCIO Faça um mapa de gargalos: decisão, construção, marketing, operação, suporte. TERMO: Bottleneck = gargalo.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-46" data-section="SCALE" data-n="46">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">46</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Memória organizacional</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Conhecimento persistente que pode ser recuperado e conectado depois.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Evita perder decisões e repetir pesquisas.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Memória EVAr será infraestrutura transversal da Fábrica.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Captura automática de prints, voz, documentos e decisões. MONETIZAÇÃO Memória reduz custo de retrabalho e aumenta velocidade de onboarding de agentes. EXERCÍCIO Defina 10 tipos de informação que nunca deveriam se perder. TERMO: Memória organizacional = conhecimento da empresa que permanece acessível.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-47" data-section="SCALE" data-n="47">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">47</div>
+      </div>
+      <h2>AULA</h2>
+      <div class="badge">RAG</div>
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">IA busca trechos relevantes da base antes de gerar resposta.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Melhora respostas baseadas no contexto da empresa.</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Memória EVAr deve permitir consulta sem depender de lembrar nomes de arquivos.</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">DECISÃO</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Separar armazenamento, recuperação e geração.</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">MONETIZAÇÃO RAG reduz tempo de pesquisa e pode diminuir chamadas desnecessárias a modelos caros. EXERCÍCIO Defina três perguntas que a Memória EVAr deveria responder. TERMO: RAG = Retrieval-Augmented Generation.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-48" data-section="SCALE" data-n="48">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">48</div>
+      </div>
+      <h2>AULA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Knowledge Graph</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EM LINGUAGEM SIMPLES</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Representação de entidades e relações: FARO → concorrente → funcionalidade → decisão → fonte.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">POR QUE IMPORTA</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Relações ajudam a descobrir conexões que buscas simples não mostram.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">APLICAÇÃO EVAr</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Construir depois de termos conhecimento suficiente.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">DECISÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Não criar grafo vazio; primeiro criar memória útil. MONETIZAÇÃO Pode se tornar diferencial interno e, se validado, produto futuro. EXERCÍCIO Liste 20 entidades e relações que aparecem repetidamente na EVAr. TERMO: Knowledge Graph = grafo de conhecimento.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-49" data-section="SCALE" data-n="49">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">49</div>
+      </div>
+      <h2>05 • INFRA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Cloud-first — decisão arquitetural</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">iPhone = captura.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Cloud = disponibilidade permanente.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Notebook = laboratório e desenvolvimento.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Storage = arquivos e prints.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Database = metadados e memória estruturada.
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">IA = camada intercambiável.
+</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Agentes = execução.</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">META Começar com free tiers e custo próximo de R$0–50/mês, aumentando só quando o uso justificar.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-50" data-section="SCALE" data-n="50">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">50</div>
+      </div>
+      <h2>05 • SISTEMA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Arquitetura da Memória EVAr</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">iPhone → captura → nuvem → IA → memória → busca → agentes → execução</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">CAPTURA</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">print/voz</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">CLOUD</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">disponibilidade</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">IA</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">entende</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">MEMÓRIA conecta AGENTES executam VOCÊ decide</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-51" data-section="SCALE" data-n="51">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">51</div>
+      </div>
+      <h2>05 • EVAR</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">O print deixa de ser arquivo morto</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Capturar → interpretar → complementar → relacionar → armazenar → recuperar</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Identificar assunto.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Extrair texto.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Classificar projeto.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Detectar ideia/decisão/oportunidade.
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Pesquisar quando necessário.
+</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Registrar fonte e confiança.
+</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Criar relações com conhecimento existente. PRINCÍPIO Você captura. A IA organiza.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-52" data-section="SCALE" data-n="52">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">52</div>
+      </div>
+      <h2>05 • ECONOMIA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Monetização da escala</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Mais automação → menor custo marginal.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Mais memória → menos retrabalho.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Mais agentes → mais throughput.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Mais dados → decisões melhores.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Mais produtos → portfólio maior.</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">THROUGHPUT</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Quantidade de trabalho concluído por unidade de tempo.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-53" data-section="SCALE" data-n="53">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">53</div>
+      </div>
+      <h2>05 • ALERTA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Escala sem disciplina é só desperdício em alta velocidade</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Antes de automatizar:</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">ENTENDER</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Processo atual</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">PADRONIZAR</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Regra clara</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">MEDIR</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Resultado</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">AUTOMATIZAR Só então Automatizar processo ruim torna processo ruim mais rápido.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-54" data-section="SCALE" data-n="54">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">54</div>
+      </div>
+      <h2>06 • APLICAÇÃO</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">MÓDULO 6 — EVAr AI-NATIVE OPERATING SYSTEM</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Aqui deixamos de estudar a Anthropic e começamos a desenhar nosso próprio sistema.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">DIREÇÃO</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Você</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">CONTEXTO</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Memória</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">INTELIGÊNCIA</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Modelos</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">EXECUÇÃO Agentes VALOR Produtos</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-55" data-section="SCALE" data-n="55">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">55</div>
+      </div>
+      <h2>06 • EVAR</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Camada 1 — Direção</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Visão de longo prazo.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Prioridades.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Alocação de capital e atenção.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Critérios de risco.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Decisões irreversíveis.
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Narrativa da empresa.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">HUMANO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Quanto mais estratégica e irreversível a decisão, maior a necessidade de julgamento humano.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-56" data-section="SCALE" data-n="56">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">56</div>
+      </div>
+      <h2>06 • EVAR</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Camada 2 — Memória</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Decisões.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Projetos.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Pesquisas.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Documentos.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Prompts e padrões.
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Erros e aprendizados.
+</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Relações entre assuntos.</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">OBJETIVO Nenhum insight importante deveria depender de você lembrar onde o viu.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-57" data-section="SCALE" data-n="57">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">57</div>
+      </div>
+      <h2>06 • EVAR</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Camada 3 — Inteligência</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Não escolher uma IA campeã. Escolher a inteligência adequada para cada tarefa.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">MODELO A</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Raciocínio complexo</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">MODELO B</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Código/agentes</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">MODELO C</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Volume/baixo custo</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Routing = decidir qual modelo usar conforme qualidade, custo, latência e risco.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-58" data-section="SCALE" data-n="58">
+      <div class="slide-top">
+        <div class="section-kicker">05 · SCALE</div>
+        <div class="slide-number">58</div>
+      </div>
+      <h2>06 • EVAR</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Camada 4 — Execução</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Agentes recebem objetivos.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Ferramentas permitem agir.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Workflows conectam tarefas.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">QA verifica resultados.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Aprovação humana entra onde o risco exige.</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">PRINCÍPIO</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Agente sem critério de sucesso é apenas automação imprevisível.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide overview" id="slide-59" data-section="EVAr AI-Native Operating System" data-n="59">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">59</div>
+      </div>
+      <h2>06 • EVAR</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Camada 5 — Produtos</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Fábrica → FARO → EVAr AI → novos produtos</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">FÁBRICA</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Constrói e aprende</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">PRODUTOS</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Monetizam e geram dados</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">MEMÓRIA</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Retém aprendizado</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-60" data-section="EVAr AI-Native Operating System" data-n="60">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">60</div>
+      </div>
+      <h2>06 • EVAR</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">O ciclo de aprendizagem</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Produto → uso → dados → feedback → memória → decisão → melhoria → produto</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Esse ciclo é o verdadeiro ativo composto.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-61" data-section="EVAr AI-Native Operating System" data-n="61">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">61</div>
+      </div>
+      <h2>06 • ECONOMIA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Monetização — portfólio EVAr</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Produtos recorrentes podem financiar infraestrutura.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Microapps podem usar preço premium-acessível para ganhar base.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Produtos maiores podem capturar mais valor.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Infraestrutura compartilhada reduz custo por produto.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">O portfólio pode aumentar LTV da marca EVAr.</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">PORTFÓLIO</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Uma mesma Fábrica e Memória podem suportar múltiplos produtos.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-62" data-section="EVAr AI-Native Operating System" data-n="62">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">62</div>
+      </div>
+      <h2>07 • EXECUÇÃO</h2>
+      <div class="badge">MÓDULO 7 — COMO OPERAR NA PRÁTICA</div>
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">A pergunta deixa de ser “qual prompt devo usar?” e passa a ser “qual sistema deve executar este trabalho?”.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-63" data-section="EVAr AI-Native Operating System" data-n="63">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">63</div>
+      </div>
+      <h2>07 • LINGUAGEM</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Prompt vs. Workflow vs. Agente</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">PROMPT</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Instrução para produzir uma resposta.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">WORKFLOW</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Sequência de etapas conhecida e repetível.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">AGENTE</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Sistema que decide/planeja etapas para atingir um objetivo.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Quanto maior a autonomia, maior a necessidade de contexto, limites e verificação.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-64" data-section="EVAr AI-Native Operating System" data-n="64">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">64</div>
+      </div>
+      <h2>07 • EXECUÇÃO</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Framework de delegação EVAr</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Defina objetivo</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Forneça contexto</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Defina restrições</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Defina critério de sucesso</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Peça execução</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Verifique</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-65" data-section="EVAr AI-Native Operating System" data-n="65">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">65</div>
+      </div>
+      <h2>07 • GOVERNANÇA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Controle humano</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Baixo risco + alta repetição → automação maior.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Médio risco → agente + revisão.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Alto risco/reputação/financeiro → humano aprova.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Decisões irreversíveis → humano.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Dados sensíveis → arquitetura e permissões específicas.</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">REGRA</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Autonomia deve crescer proporcionalmente à capacidade de verificar.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-66" data-section="EVAr AI-Native Operating System" data-n="66">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">66</div>
+      </div>
+      <h2>07 • ECONOMIA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Modelo de monetização — framework</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">ASSINATURA</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Valor recorrente; simples de entender.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">USO</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Preço acompanha consumo.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">COMISSÃO</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Preço ligado a transação/resultado.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">LICENÇA/B2B</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Empresa paga pelo direito de uso/estrutura. FREEMIUM Entrada gratuita, monetização por expansão.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-67" data-section="EVAr AI-Native Operating System" data-n="67">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">67</div>
+      </div>
+      <h2>07 • ECONOMIA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Como escolher monetização</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Valor recorrente → assinatura.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Consumo variável → uso.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Valor transacional → comissão.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Valor corporativo → licença/contrato.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Aquisição muito sensível → freemium, se houver caminho claro para conversão.
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Não escolher pelo modelo “da moda”; escolher pela forma como o valor é criado.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-68" data-section="EVAr AI-Native Operating System" data-n="68">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">68</div>
+      </div>
+      <h2>08 • EVAR</h2>
+      <div class="badge">MÓDULO 8 — APLICAÇÃO AOS PROJETOS</div>
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">A teoria agora vira nossa ordem de construção.</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">FÁBRICA</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Infraestrutura</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">FARO</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Primeiro produto</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">MEMÓRIA</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Conhecimento</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">EVAr AI</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Segundo produto PORTFÓLIO Escala</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-69" data-section="EVAr AI-Native Operating System" data-n="69">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">69</div>
+      </div>
+      <h2>08 • FARO</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">FARO — tese do produto</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Gerente de IA para profissionais autônomos.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Foco: dinheiro visível hoje.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Oportunidades priorizadas.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Missão do dia.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Onboarding mínimo.
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">IA começa com regras e evolui com dados.
+</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Produto simples para usuários pouco tecnológicos.</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">MÉTRICA CENTRAL O usuário age mais e melhora o resultado?</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-70" data-section="EVAr AI-Native Operating System" data-n="70">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">70</div>
+      </div>
+      <h2>08 • FARO</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">FARO — monetização</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Hipótese principal: assinatura.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Preço premium-acessível.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Valor percebido ligado a dinheiro recuperado/gerado.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Plano gratuito só se ajudar aquisição sem destruir margem.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Upsell futuro pode vir de recursos de maior valor, não de complexidade gratuita.</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">TESTE</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Preço é hipótese. Não é decisão eterna.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-71" data-section="EVAr AI-Native Operating System" data-n="71">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">71</div>
+      </div>
+      <h2>08 • MEMÓRIA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Memória EVAr — produto interno</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Primeiro objetivo: “print no iPhone → IA entende → salva → consigo recuperar”.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Cloud-first.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Captura por print, voz, texto e documento.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Classificação automática.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Pesquisa complementar quando necessário.
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Relação com projetos.
+</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Busca conversacional.</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">CUSTO-ALVO Infraestrutura inicial próxima de R$0–50/mês.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-72" data-section="EVAr AI-Native Operating System" data-n="72">
+      <div class="slide-top">
+        <div class="section-kicker">06 · EVAr AI-Native Operating System</div>
+        <div class="slide-number">72</div>
+      </div>
+      <h2>08 • FÁBRICA</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Fábrica EVAr — patrimônio operacional</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Padrões de arquitetura.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Templates.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Backlog.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Documentação.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">QA.
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Agentes.
+</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Memória.
+</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Decisões. EFEITO COMPOSTO Cada produto novo deve tornar a Fábrica mais capaz.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide overview" id="slide-73" data-section="Execução prática" data-n="73">
+      <div class="slide-top">
+        <div class="section-kicker">07 · Execução prática</div>
+        <div class="slide-number">73</div>
+      </div>
+      <h2>08 • EVAR AI</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">EVAr AI — showroom e laboratório</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">EVAr AI + AI Kits + Do Zero à IA = ciclo comercial e educacional.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">SHOWROOM</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Demonstrar IA aplicada</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">KITS</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Resolver workflows específicos</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">EDUCAÇÃO</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Ensinar e gerar demanda</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">A própria operação da EVAr pode virar conteúdo, produto e autoridade.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-74" data-section="Execução prática" data-n="74">
+      <div class="slide-top">
+        <div class="section-kicker">07 · Execução prática</div>
+        <div class="slide-number">74</div>
+      </div>
+      <h2>09 • WORKSHOP</h2>
+      <div class="badge">MÓDULO 9 — WORKSHOP DE EXECUÇÃO</div>
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Agora o curso precisa produzir decisões.</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">DECISÃO</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">O que muda?</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">RESPONSÁVEL</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Quem executa?</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">ARTEFATO</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">O que será produzido?</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">MÉTRICA</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Como saberemos?</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-75" data-section="Execução prática" data-n="75">
+      <div class="slide-top">
+        <div class="section-kicker">07 · Execução prática</div>
+        <div class="slide-number">75</div>
+      </div>
+      <h2>09 • WORKSHOP</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Exercício final 1 — mapa de delegação</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Liste 20 tarefas recorrentes da EVAr.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Classifique: humano / IA / agente / híbrido.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Escolha as 3 de maior potencial de automação.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Defina critério de sucesso.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Defina ponto de aprovação humana.</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">SAÍDA</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Primeiro backlog de automação da EVAr.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-76" data-section="Execução prática" data-n="76">
+      <div class="slide-top">
+        <div class="section-kicker">07 · Execução prática</div>
+        <div class="slide-number">76</div>
+      </div>
+      <h2>09 • WORKSHOP</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Exercício final 2 — mapa de memória</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Quais informações você captura hoje?
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Quais se perdem?
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Quais precisam ser relacionadas?
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Quais perguntas você gostaria de fazer depois?
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Quais informações precisam de fonte e data?</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">SAÍDA</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Especificação funcional da Memória EVAr v0.1.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-77" data-section="Execução prática" data-n="77">
+      <div class="slide-top">
+        <div class="section-kicker">07 · Execução prática</div>
+        <div class="slide-number">77</div>
+      </div>
+      <h2>09 • WORKSHOP</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Exercício final 3 — mapa de monetização</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Quem é o pagador?
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Qual valor econômico recebe?
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Qual frequência de cobrança faz sentido?
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Qual custo marginal temos?
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Qual preço seria fácil de testar?
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Qual hipótese precisa de validação?</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">SAÍDA</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Hipótese de modelo de negócio por produto.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-78" data-section="Execução prática" data-n="78">
+      <div class="slide-top">
+        <div class="section-kicker">07 · Execução prática</div>
+        <div class="slide-number">78</div>
+      </div>
+      <h2>09 • WORKSHOP</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Exercício final 4 — o sistema FARO</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Transforme a tese em um fluxo operacional.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Dados → Prioridade → Recomendação → Ação → Resultado → Aprendizado</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">DADO</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">O que aconteceu?</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">DECISÃO</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">O que fazer?</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">AÇÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">O usuário fez? RESULTADO Gerou valor?</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-79" data-section="Execução prática" data-n="79">
+      <div class="slide-top">
+        <div class="section-kicker">07 · Execução prática</div>
+        <div class="slide-number">79</div>
+      </div>
+      <h2>10 • SÍNTESE</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">As 10 regras do Founder’s Playbook EVAr</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">1. Validar antes de construir.
+</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">2. Construir pequeno.
+</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">3. IA acelera; não absolve julgamento.
+</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">4. Arquitetura e memória evitam dívida.
+</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">5. Distribuição é parte do produto.
+</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">6. Medir comportamento, não entusiasmo.
+</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">7. Agentes executam; humanos governam.
+</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">8. Cloud-first e custo mínimo.
+ 9. Monetização é hipótese desde o início.
+ 10. Cada projeto deve aumentar a capacidade da Fábrica.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-80" data-section="Execução prática" data-n="80">
+      <div class="slide-top">
+        <div class="section-kicker">07 · Execução prática</div>
+        <div class="slide-number">80</div>
+      </div>
+      <h2>10 • SÍNTESE</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">A arquitetura estratégica da EVAr</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Você → Memória → Inteligência → Agentes → Produtos → Mercado → Feedback → Memória</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Esse é o ciclo que transforma IA de ferramenta em infraestrutura empresarial.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">OBJETIVO</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Aumentar capacidade sem aumentar proporcionalmente complexidade e estrutura.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide overview" id="slide-81" data-section="Aplicação EVAr" data-n="81">
+      <div class="slide-top">
+        <div class="section-kicker">08 · Aplicação EVAr</div>
+        <div class="slide-number">81</div>
+      </div>
+      <h2>10 • EXECUÇÃO</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">O que fazemos agora</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Preparar Fábrica
+Infraestrutura de desenvolvimento.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Memória EVAr
+Cloud-first, captura e recuperação.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">FARO
+MVP disciplinado e evidência.</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Agentes
+Testar Kimi Work e alternativas.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">EVAr AI
+Segundo produto e showroom.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-82" data-section="Aplicação EVAr" data-n="82">
+      <div class="slide-top">
+        <div class="section-kicker">08 · Aplicação EVAr</div>
+        <div class="slide-number">82</div>
+      </div>
+      <h2>10 • ENCERRAMENTO</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Critério de sucesso do curso</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Não é lembrar os slides.</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">É tomar decisões melhores e executar mais rápido.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">CONHECIMENTO</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Entender</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">DECISÃO</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Escolher</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">EXECUÇÃO</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Fazer</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-83" data-section="Aplicação EVAr" data-n="83">
+      <div class="slide-top">
+        <div class="section-kicker">08 · Aplicação EVAr</div>
+        <div class="slide-number">83</div>
+      </div>
+      <h2>11 • GLOSSÁRIO</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Glossário rápido — consulta</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">AI-native</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Empresa desenhada em torno de IA.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">MVP</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Menor produto funcional para testar uma hipótese.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">PMF</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Aderência produto-mercado.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">GTM</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Entrada e distribuição no mercado. CAC Custo de aquisição de cliente. LTV Valor econômico esperado por cliente. Churn Perda de clientes. RAG IA consulta uma base antes de responder. API Ponte entre softwares. Agent IA que executa tarefas com ferramentas. Workflow Fluxo estruturado de trabalho. Orchestration Coordenação de componentes.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-84" data-section="Aplicação EVAr" data-n="84">
+      <div class="slide-top">
+        <div class="section-kicker">08 · Aplicação EVAr</div>
+        <div class="slide-number">84</div>
+      </div>
+      <h2>11 • GLOSSÁRIO</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Glossário — engenharia e operação</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Deploy</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Publicar o sistema para uso.</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">Repository</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Local de código e histórico.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">CI/CD</div></article><article class="card blue"><div class="card-index">07</div><div class="card-text">Automatização de testes e publicação.</div></article><article class="card navy"><div class="card-index">08</div><div class="card-text">Observability</div></article><article class="card navy wide"><div class="card-index">+</div><div class="card-text">Logs, métricas e alertas. Latency Tempo de resposta. Unit economics Economia por cliente/transação. QA Garantia de qualidade. Technical debt Custo futuro criado por escolhas de hoje. Routing Escolha do modelo certo para cada tarefa.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide" id="slide-85" data-section="Aplicação EVAr" data-n="85">
+      <div class="slide-top">
+        <div class="section-kicker">08 · Aplicação EVAr</div>
+        <div class="slide-number">85</div>
+      </div>
+      <h2>12 • FONTES</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">Fontes e nota de integridade</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Fonte primária</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">Anthropic — The founder’s playbook: Building an AI-native startup (14 May 2026)</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">https://claude.com/blog/the-founders-playbook</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">A estrutura e os conceitos deste curso foram reconstruídos a partir da publicação oficial e de material público de referência. O conteúdo dos slides é uma adaptação educacional própria, não uma reprodução do eBook.</div></article><article class="card teal"><div class="card-index">06</div><div class="card-text">Também usamos a edição pública de leitura para conferir a estrutura dos capítulos e os temas centrais.</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+    <section class="slide overview" id="slide-86" data-section="Síntese" data-n="86">
+      <div class="slide-top">
+        <div class="section-kicker">Encerramento · Síntese</div>
+        <div class="slide-number">86</div>
+      </div>
+      <h2>FOUNDER’S PLAYBOOK EVAr</h2>
+      
+      <div class="cards"><article class="card gold"><div class="card-index">01</div><div class="card-text">A pergunta mudou.</div></article><article class="card teal"><div class="card-index">02</div><div class="card-text">Não é mais:
+“Como eu consigo construir isso?”</div></article><article class="card blue"><div class="card-index">03</div><div class="card-text">É:</div></article><article class="card navy"><div class="card-index">04</div><div class="card-text">“O que vale a pena construir,
+como provar, vender e operar em escala com IA?”</div></article><article class="card gold"><div class="card-index">05</div><div class="card-text">Curso completo • EVAr</div></article></div>
+      <div class="slide-progress"><span></span></div>
+    </section>
+    
+  </div>
+  <div class="controls">
+    <button id="prev" aria-label="Slide anterior">←</button>
+    <button id="next" aria-label="Próximo slide">→</button>
+  </div>
+</main>
+</div>
+<script>
+const deck=document.getElementById('deck');
+const all=[...document.querySelectorAll('.slide')];
+const nodes=[...document.querySelectorAll('.map-node')];
+let current=0;
+function go(i){
+  current=Math.max(0,Math.min(all.length-1,i));
+  all[current].scrollIntoView({behavior:'smooth',block:'start'});
+  nodes.forEach(n=>n.classList.toggle('active',Number(n.dataset.target)===current+1));
+}
+document.getElementById('prev').onclick=()=>go(current-1);
+document.getElementById('next').onclick=()=>go(current+1);
+nodes.forEach(n=>n.onclick=()=>go(Number(n.dataset.target)-1));
+document.addEventListener('keydown',e=>{
+  if(['ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();go(current+1)}
+  if(['ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(current-1)}
+  if(e.key==='Home'){e.preventDefault();go(0)}
+  if(e.key==='End'){e.preventDefault();go(all.length-1)}
+});
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(e=>{
+   if(e.isIntersecting){
+     current=all.indexOf(e.target);
+     nodes.forEach(n=>n.classList.toggle('active',Number(n.dataset.target)===current+1));
+     const pct=((current+1)/all.length)*100;
+     e.target.querySelector('.slide-progress span').style.width=pct+'%';
+   }
+ });
+},{root:deck,threshold:.65});
+all.forEach(s=>observer.observe(s));
+</script>
+</body>
+</html>
