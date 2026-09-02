@@ -1,0 +1,61 @@
+name: EVAr Project Status Sync
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  project-status-sync:
+    name: project-status-sync
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate required status files and markers
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f README.md
+          test -f PROJECT_STATUS.md
+
+          readme_status=$(grep -oE 'EVAR_PROJECT_STATUS: [A-Z0-9_-]+' README.md | head -n1 | cut -d' ' -f2 || true)
+          project_status=$(grep -oE 'EVAR_PROJECT_STATUS: [A-Z0-9_-]+' PROJECT_STATUS.md | head -n1 | cut -d' ' -f2 || true)
+
+          if [[ -z "$readme_status" || -z "$project_status" ]]; then
+            echo "::error::README.md and PROJECT_STATUS.md must both contain an EVAR_PROJECT_STATUS marker."
+            exit 1
+          fi
+
+          if [[ "$readme_status" != "$project_status" ]]; then
+            echo "::error::Status mismatch: README=$readme_status PROJECT_STATUS=$project_status"
+            exit 1
+          fi
+
+      - name: Require paired status-document changes
+        if: github.event_name == 'pull_request'
+        shell: bash
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          changed=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA")
+          readme_changed=false
+          project_changed=false
+
+          grep -qx 'README.md' <<<"$changed" && readme_changed=true || true
+          grep -qx 'PROJECT_STATUS.md' <<<"$changed" && project_changed=true || true
+
+          if [[ "$readme_changed" != "$project_changed" ]]; then
+            echo "::error::Status governance violation: README.md and PROJECT_STATUS.md must change together."
+            exit 1
+          fi
